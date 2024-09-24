@@ -17,11 +17,43 @@ type
     Senha: string;
   end;
 
+  TCaneca = class
+
+  end;
+
   TGarrafa = class
     Cor: string;
     Modelo: string;
     Tampa: string;
+    Caneca: TCaneca;
+    constructor Create;
+    destructor Destroy; override;
     procedure ArmazenarLiquido(Liquido: string);
+  end;
+
+  TRoda = class
+    public
+      Tipo: string;
+      Tamanho: string;
+  end;
+
+  TCarro = class
+
+    type
+      TRoda = class
+        public
+          Tipo: string;
+          Tamanho: string;
+      end;
+
+    private
+      Marca: string;
+      Modelo: string;
+      Roda: TRoda;
+    public
+
+    procedure MontarCarro;
+
   end;
 
   TForm1 = class(TForm)
@@ -87,6 +119,27 @@ begin
   Memo1.Lines.Add(Configuracao.Path);
   Memo1.Lines.Add(Configuracao.Usuario);
   Memo1.Lines.Add(Configuracao.Senha);
+end;
+
+constructor TGarrafa.Create;
+begin
+
+end;
+
+destructor TGarrafa.Destroy;
+begin
+
+  inherited;
+end;
+
+{ TCarro }
+
+procedure TCarro.MontarCarro;
+begin
+  Marca := 'BMW';
+  Modelo := 'i320';
+  Roda.Tipo := 'Liga leve';
+  Roda.Tamanho := '15';
 end;
 
 end.
