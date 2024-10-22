@@ -1,37 +1,62 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Form1'
-  ClientHeight = 390
-  ClientWidth = 430
+  Caption = 'POO Clube dos programadores'
+  ClientHeight = 392
+  ClientWidth = 432
+  Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   DesignerMasterStyle = 0
   object Button1: TButton
-    Position.X = 96.000000000000000000
+    Position.X = 32.000000000000000000
     Position.Y = 176.000000000000000000
     TabOrder = 1
     Text = 'Classe'
+    TextSettings.Trimming = None
     OnClick = Button1Click
   end
   object Button2: TButton
-    Position.X = 272.000000000000000000
+    Position.X = 305.000000000000000000
     Position.Y = 176.000000000000000000
     TabOrder = 0
     Text = 'Record'
+    TextSettings.Trimming = None
     OnClick = Button2Click
   end
   object Memo1: TMemo
     Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
     DataDetectorTypes = []
-    Position.X = 64.000000000000000000
+    Position.X = 32.000000000000000000
     Position.Y = 232.000000000000000000
-    Size.Width = 321.000000000000000000
+    Size.Width = 353.000000000000000000
     Size.Height = 89.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 3
-    Viewport.Width = 317.000000000000000000
+    Viewport.Width = 349.000000000000000000
     Viewport.Height = 85.000000000000000000
+  end
+  object btnCadClienteProcedural: TButton
+    Position.X = 32.000000000000000000
+    Position.Y = 48.000000000000000000
+    Size.Width = 145.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    Text = 'Cad. Cliente Procedural'
+    TextSettings.Trimming = None
+    OnClick = btnCadClienteProceduralClick
+  end
+  object btnCadClientePOO: TButton
+    Position.X = 240.000000000000000000
+    Position.Y = 48.000000000000000000
+    Size.Width = 145.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    Text = 'Cad. Cliente POO'
+    TextSettings.Trimming = None
+    OnClick = btnCadClientePOOClick
   end
 end

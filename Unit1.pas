@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Memo.Types, FMX.ScrollBox,
-  FMX.Memo;
+  FMX.Memo, cCliente;
 
 type
 
@@ -60,13 +60,21 @@ type
     Button1: TButton;
     Button2: TButton;
     Memo1: TMemo;
+    btnCadClienteProcedural: TButton;
+    btnCadClientePOO: TButton;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure btnCadClienteProceduralClick(Sender: TObject);
+    procedure btnCadClientePOOClick(Sender: TObject);
   private
     procedure ExibeMemo(Configuracao: TConfiguracao);
+    procedure CadastrarClienteProcedural(Nome, Telefone, Endereco, Cidade,
+      Estado: string);
+    procedure CadastrarClientePOO(Value: TCliente);
     { Private declarations }
   public
     { Public declarations }
+
   end;
 
 var
@@ -81,6 +89,28 @@ implementation
 procedure TGarrafa.ArmazenarLiquido(Liquido: string);
 begin
   //
+end;
+
+procedure TForm1.btnCadClientePOOClick(Sender: TObject);
+var
+  Cliente: TCliente;
+begin
+  try
+    Cliente := TCliente.Create;
+    Cliente.Nome := 'Igor';
+    Cliente.Telefone := '32231185';
+    Cliente.Endereco := 'Rua testando POO, 85';
+    Cliente.Cidade := 'Capital do Ceará';
+    Cliente.Estado := 'Ceará';
+    CadastrarClientePOO(Cliente);
+  finally
+    Cliente.Free;
+  end;
+end;
+
+procedure TForm1.btnCadClienteProceduralClick(Sender: TObject);
+begin
+  CadastrarClienteProcedural('Igor', '1111111', 'Rua testando procedural, 85', 'Fortaleza', 'Ceará');
 end;
 
 procedure TForm1.Button1Click(Sender: TObject);
@@ -140,6 +170,40 @@ begin
   Modelo := 'i320';
   Roda.Tipo := 'Liga leve';
   Roda.Tamanho := '15';
+end;
+
+procedure TForm1.CadastrarClienteProcedural(Nome, Telefone, Endereco, Cidade, Estado: string);
+var
+  Lista: TStringList;
+begin
+  Lista := TStringList.Create;
+  try
+    Lista.Add('Nome: ' +Nome);
+    Lista.Add('Telefone: ' +Telefone);
+    Lista.Add('Endereco: ' +Endereco);
+    Lista.Add('Cidade: ' +Cidade);
+    Lista.Add('Estado: ' +Estado);
+    Lista.SaveToFile('ClienteProcedural.txt');
+  finally
+    Lista.Free;
+  end;
+end;
+
+procedure TForm1.CadastrarClientePOO(Value: TCliente);
+var
+  Lista: TStringList;
+begin
+  Lista := TStringList.Create;
+  try
+    Lista.Add('Nome: ' +Value.Nome);
+    Lista.Add('Telefone: ' +Value.Telefone);
+    Lista.Add('Endereco: ' +Value.Endereco);
+    Lista.Add('Cidade: ' +Value.Cidade);
+    Lista.Add('Estado: ' +Value.Estado);
+    Lista.SaveToFile('ClientePOO.txt');
+  finally
+    Lista.Free;
+  end;
 end;
 
 end.
