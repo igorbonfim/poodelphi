@@ -46,7 +46,6 @@ object Form1: TForm1
     TabOrder = 5
     Text = 'Cad. Cliente Procedural'
     TextSettings.Trimming = None
-    OnClick = btnCadClienteProceduralClick
   end
   object btnCadClientePOO: TButton
     Position.X = 240.000000000000000000
