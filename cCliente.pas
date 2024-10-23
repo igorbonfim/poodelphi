@@ -4,6 +4,8 @@ interface
 
 type
   TCliente = class
+  private
+    FDataNascimento: TDateTime;
   public
     Nome: string;
     Telefone: string;
@@ -12,12 +14,14 @@ type
     Estado: string;
     constructor Create;
     procedure CadastrarClientePOO;
+    function Idade: integer;
+    procedure SetDataNascimento(aValue: string);
   end;
 
 implementation
 
 uses
-  System.Classes;
+  System.Classes, System.SysUtils;
 
 { TCliente }
 
@@ -43,4 +47,20 @@ begin
   Estado := 'Ceará';
 end;
 
+function TCliente.Idade: integer;
+begin
+  Result := Trunc((Now - FDataNascimento) / 365.25);
+end;
+
+procedure TCliente.SetDataNascimento(aValue: string);
+begin
+  if not TryStrToDateTime(aValue, FDataNascimento) then
+    raise Exception.Create('A data é inválida');
+
+  FDataNascimento := StrToDateTime(aValue);
+end;
+
 end.
+
+
+

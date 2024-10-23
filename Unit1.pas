@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Memo.Types, FMX.ScrollBox,
-  FMX.Memo, cCliente;
+  FMX.Memo, cCliente, FMX.Edit;
 
 type
 
@@ -62,6 +62,7 @@ type
     Memo1: TMemo;
     btnCadClienteProcedural: TButton;
     btnCadClientePOO: TButton;
+    edtDataNascimento: TEdit;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure btnCadClientePOOClick(Sender: TObject);
@@ -97,7 +98,10 @@ begin
     Cliente.Endereco := 'Rua testando POO, 85';
     Cliente.Cidade := 'Capital do Ceará';
     Cliente.Estado := 'Ceará';
+    Cliente.SetDataNascimento(edtDataNascimento.Text);
     Cliente.CadastrarClientePOO;
+
+    ShowMessage('Idade: ' +IntToStr(Cliente.Idade));
   finally
     Cliente.Free;
   end;
