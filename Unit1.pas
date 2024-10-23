@@ -98,7 +98,7 @@ begin
     Cliente.Endereco := 'Rua testando POO, 85';
     Cliente.Cidade := 'Capital do Ceará';
     Cliente.Estado := 'Ceará';
-    Cliente.SetDataNascimento(edtDataNascimento.Text);
+    Cliente.DataNascimento := StrToDateTime(edtDataNascimento.Text);
     Cliente.CadastrarClientePOO;
 
     ShowMessage('Idade: ' +IntToStr(Cliente.Idade));
