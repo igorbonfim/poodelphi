@@ -2,6 +2,17 @@ unit cCliente;
 
 interface
 
+uses
+  System.Classes, System.SysUtils;
+
+type
+  TClasseAmiga = class
+  private
+    Teste: string;
+  public
+    procedure TesteDeSoftware;
+  end;
+
 type
   TCliente = class
   private
@@ -26,8 +37,7 @@ type
 
 implementation
 
-uses
-  System.Classes, System.SysUtils;
+
 
 { TCliente }
 
@@ -79,6 +89,15 @@ begin
     raise Exception.Create('Nome não pode ser nulo!');
 
   FNome := Value;
+end;
+
+{ TClasseAmiga }
+
+procedure TClasseAmiga.TesteDeSoftware;
+var
+  aClasse: TCliente;
+begin
+  aClasse.FNome := 'Teste';
 end;
 
 end.
