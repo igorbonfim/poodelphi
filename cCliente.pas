@@ -7,7 +7,7 @@ uses
 
 type
   TClasseAmiga = class
-  private
+  strict private
     Teste: string;
   public
     procedure TesteDeSoftware;
@@ -15,7 +15,7 @@ type
 
 type
   TCliente = class
-  private
+  strict private
     FDataNascimento: TDateTime;
     FNome: string;
     FEndereco: string;
@@ -97,7 +97,7 @@ procedure TClasseAmiga.TesteDeSoftware;
 var
   aClasse: TCliente;
 begin
-  aClasse.FNome := 'Teste';
+  //
 end;
 
 end.
