@@ -95,11 +95,12 @@ begin
     Cliente := TCliente.Create;
     Cliente.Nome := 'Igor';
     Cliente.Telefone := '32231185';
-    Cliente.Endereco := 'Rua testando POO, 85';
-    Cliente.Cidade := 'Capital do Ceará';
+    Cliente.Endereco := 'Rua testando POO e Financeiro, 85';
+    Cliente.Cidade := 'Capital';
     Cliente.Estado := 'Ceará';
     Cliente.DataNascimento := StrToDateTime(edtDataNascimento.Text);
     Cliente.CadastrarClientePOO;
+    Cliente.CriarFinanceiro;
 
     ShowMessage('Idade: ' +IntToStr(Cliente.Idade));
   finally

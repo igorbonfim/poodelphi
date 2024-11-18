@@ -19,6 +19,7 @@ type
     FDataNascimento: TDateTime;
     FNome: string;
     FEndereco: string;
+    Saldo: currency;
     procedure SetDataNascimento(const Value: TDateTime);
     procedure SetNome(const Value: string);
     function GetEndereco: string;
@@ -29,6 +30,7 @@ type
     Estado: string;
     constructor Create;
     procedure CadastrarClientePOO;
+    procedure CriarFinanceiro;
     function Idade: integer;
     property Nome: string read FNome write SetNome;
     property DataNascimento: TDateTime read FDataNascimento write SetDataNascimento;
@@ -52,7 +54,7 @@ begin
     Lista.Add('Endereco: ' +Endereco);
     Lista.Add('Cidade: ' +Cidade);
     Lista.Add('Estado: ' +Estado);
-    Lista.SaveToFile('ClientePOO.txt');
+    Lista.SaveToFile(Nome + '_ClientePOO.txt');
   finally
     Lista.Free;
   end;
@@ -61,6 +63,21 @@ end;
 constructor TCliente.Create;
 begin
   Estado := 'Ceará';
+  Saldo := 1000;
+end;
+
+procedure TCliente.CriarFinanceiro;
+var
+  Lista: TStringList;
+begin
+  Lista := TStringList.Create;
+  try
+    Lista.Add('Nome: ' +Nome);
+    Lista.Add('Saldo: ' +CurrToStr(Saldo));
+    Lista.SaveToFile(Nome + '_Financeiro.txt');
+  finally
+    Lista.Free;
+  end;
 end;
 
 function TCliente.GetEndereco: string;
