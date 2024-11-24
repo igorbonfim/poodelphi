@@ -3,7 +3,7 @@ unit cCliente;
 interface
 
 uses
-  System.Classes, System.SysUtils;
+  System.Classes, System.SysUtils, Interfaces;
 
 type
   TClasseAmiga = class
@@ -20,6 +20,7 @@ type
     FNome: string;
     FEndereco: string;
     Saldo: currency;
+    Conexao: IConexao;
     procedure SetDataNascimento(const Value: TDateTime);
     procedure SetNome(const Value: string);
     function GetEndereco: string;
@@ -28,7 +29,7 @@ type
     Telefone: string;
     Cidade: string;
     Estado: string;
-    constructor Create;
+    constructor Create(aConexao: IConexao);
     procedure CadastrarClientePOO;
     procedure CriarFinanceiro;
     function Idade: integer;
@@ -55,13 +56,16 @@ begin
     Lista.Add('Cidade: ' +Cidade);
     Lista.Add('Estado: ' +Estado);
     Lista.SaveToFile(Nome + '_ClientePOO.txt');
+
+    Conexao.Gravar;
   finally
     Lista.Free;
   end;
 end;
 
-constructor TCliente.Create;
+constructor TCliente.Create(aConexao: IConexao);
 begin
+  Conexao := aConexao;
   Estado := 'Ceará';
   Saldo := 1000;
 end;

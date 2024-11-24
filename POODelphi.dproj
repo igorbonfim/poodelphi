@@ -193,6 +193,8 @@
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="cCliente.pas"/>
+        <DCCReference Include="Conexao.SQLServer.pas"/>
+        <DCCReference Include="Interfaces.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -80,6 +80,8 @@ implementation
 
 {$R *.fmx}
 
+uses Conexao.SQLServer, Conexao.MySQL;
+
 { TGarrafa }
 
 procedure TGarrafa.ArmazenarLiquido(Liquido: string);
@@ -92,7 +94,7 @@ var
   Cliente: TCliente;
 begin
   try
-    Cliente := TCliente.Create;
+    Cliente := TCliente.Create(TConexaoSQLServer.Create);
     Cliente.Nome := 'Igor';
     Cliente.Telefone := '32231185';
     Cliente.Endereco := 'Rua testando POO e Financeiro, 85';
