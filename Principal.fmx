@@ -43,9 +43,10 @@ object Form1: TForm1
     Size.Width = 145.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 5
-    Text = 'Cad. Cliente Procedural'
+    TabOrder = 6
+    Text = 'Cad. Fornecedor'
     TextSettings.Trimming = None
+    OnClick = btnCadClienteProceduralClick
   end
   object btnCadClientePOO: TButton
     Position.X = 240.000000000000000000
@@ -66,5 +67,16 @@ object Form1: TForm1
     Size.Width = 145.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
+  end
+  object Button3: TButton
+    Position.X = 32.000000000000000000
+    Position.Y = 78.000000000000000000
+    Size.Width = 145.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    Text = 'Cad. Cliente'
+    TextSettings.Trimming = None
+    OnClick = Button3Click
   end
 end

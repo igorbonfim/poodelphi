@@ -188,13 +188,16 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="Unit1.pas">
+        <DCCReference Include="Principal.pas">
             <Form>Form1</Form>
             <FormType>fmx</FormType>
         </DCCReference>
-        <DCCReference Include="cCliente.pas"/>
+        <DCCReference Include="Classe.Pessoa.pas"/>
         <DCCReference Include="Conexao.SQLServer.pas"/>
         <DCCReference Include="Interfaces.pas"/>
+        <DCCReference Include="Conexao.MySQL.pas"/>
+        <DCCReference Include="Classe.Fornecedor.pas"/>
+        <DCCReference Include="Classe.Cliente.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

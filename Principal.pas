@@ -1,4 +1,4 @@
-unit Unit1;
+unit Principal;
 
 interface
 
@@ -6,7 +6,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Memo.Types, FMX.ScrollBox,
-  FMX.Memo, cCliente, FMX.Edit;
+  FMX.Memo, Classe.Pessoa, FMX.Edit, Conexao.SQLServer, Conexao.MySQL, Classe.Fornecedor,
+  Classe.Cliente;
 
 type
 
@@ -63,9 +64,12 @@ type
     btnCadClienteProcedural: TButton;
     btnCadClientePOO: TButton;
     edtDataNascimento: TEdit;
+    Button3: TButton;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure btnCadClientePOOClick(Sender: TObject);
+    procedure btnCadClienteProceduralClick(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
   private
     procedure ExibeMemo(Configuracao: TConfiguracao);
     { Private declarations }
@@ -80,7 +84,6 @@ implementation
 
 {$R *.fmx}
 
-uses Conexao.SQLServer, Conexao.MySQL;
 
 { TGarrafa }
 
@@ -91,10 +94,10 @@ end;
 
 procedure TForm1.btnCadClientePOOClick(Sender: TObject);
 var
-  Cliente: TCliente;
+  Cliente: TPessoa;
 begin
   try
-    Cliente := TCliente.Create(TConexaoSQLServer.Create);
+    Cliente := TPessoa.Create(TConexaoSQLServer.Create);
     Cliente.Nome := 'Igor';
     Cliente.Telefone := '32231185';
     Cliente.Endereco := 'Rua testando POO e Financeiro, 85';
@@ -107,6 +110,23 @@ begin
     ShowMessage('Idade: ' +IntToStr(Cliente.Idade));
   finally
     Cliente.Free;
+  end;
+end;
+
+procedure TForm1.btnCadClienteProceduralClick(Sender: TObject);
+var
+  Fornecedor: TFornecedor;
+begin
+  Fornecedor := TFornecedor.Create(TConexaoMySQL.Create);
+  try
+    Fornecedor.Nome := 'Teste 1';
+    Fornecedor.Cidade := 'Fortaleza';
+    Fornecedor.Estado := 'Ceará';
+    Fornecedor.RazaoSocial := 'Teste LTDA';
+    Fornecedor.Cadastrar;
+    Fornecedor.CriarFinanceiro;
+  finally
+    Fornecedor.Free;
   end;
 end;
 
@@ -138,6 +158,23 @@ begin
   Configuracao.Usuario := 'user';
   Configuracao.Senha := 'senha';
   ExibeMemo(Configuracao);
+end;
+
+procedure TForm1.Button3Click(Sender: TObject);
+var
+  Cliente: TCliente;
+begin
+  Cliente := TCliente.Create(TConexaoMySQL.Create);
+  try
+    Cliente.Nome := 'Teste 1';
+    Cliente.Cidade := 'Fortaleza';
+    Cliente.Estado := 'Ceará';
+    Cliente.Saldo := 2000;
+    Cliente.Cadastrar;
+    Cliente.CriarFinanceiro;
+  finally
+    Cliente.Free;
+  end;
 end;
 
 procedure TForm1.ExibeMemo(Configuracao: TConfiguracao);

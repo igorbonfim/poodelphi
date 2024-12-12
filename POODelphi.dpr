@@ -3,10 +3,13 @@ program POODelphi;
 uses
   System.StartUpCopy,
   FMX.Forms,
-  Unit1 in 'Unit1.pas' {Form1},
-  cCliente in 'cCliente.pas',
+  Principal in 'Principal.pas' {Form1},
+  Classe.Pessoa in 'Classe.Pessoa.pas',
   Conexao.SQLServer in 'Conexao.SQLServer.pas',
-  Interfaces in 'Interfaces.pas';
+  Interfaces in 'Interfaces.pas',
+  Conexao.MySQL in 'Conexao.MySQL.pas',
+  Classe.Fornecedor in 'Classe.Fornecedor.pas',
+  Classe.Cliente in 'Classe.Cliente.pas';
 
 {$R *.res}
 

@@ -1,4 +1,4 @@
-unit cCliente;
+unit Classe.Pessoa;
 
 interface
 
@@ -14,12 +14,11 @@ type
   end;
 
 type
-  TCliente = class
+  TPessoa = class
   strict private
     FDataNascimento: TDateTime;
     FNome: string;
     FEndereco: string;
-    Saldo: currency;
     Conexao: IConexao;
     procedure SetDataNascimento(const Value: TDateTime);
     procedure SetNome(const Value: string);
@@ -29,8 +28,10 @@ type
     Telefone: string;
     Cidade: string;
     Estado: string;
+    Tipo: string;
     constructor Create(aConexao: IConexao);
     procedure CadastrarClientePOO;
+    procedure Cadastrar;
     procedure CriarFinanceiro;
     function Idade: integer;
     property Nome: string read FNome write SetNome;
@@ -40,11 +41,14 @@ type
 
 implementation
 
-
-
 { TCliente }
 
-procedure TCliente.CadastrarClientePOO;
+procedure TPessoa.Cadastrar;
+begin
+  //Cadastrar
+end;
+
+procedure TPessoa.CadastrarClientePOO;
 var
   Lista: TStringList;
 begin
@@ -63,48 +67,46 @@ begin
   end;
 end;
 
-constructor TCliente.Create(aConexao: IConexao);
+constructor TPessoa.Create(aConexao: IConexao);
 begin
   Conexao := aConexao;
   Estado := 'Ceará';
-  Saldo := 1000;
 end;
 
-procedure TCliente.CriarFinanceiro;
+procedure TPessoa.CriarFinanceiro;
 var
   Lista: TStringList;
 begin
   Lista := TStringList.Create;
   try
     Lista.Add('Nome: ' +Nome);
-    Lista.Add('Saldo: ' +CurrToStr(Saldo));
     Lista.SaveToFile(Nome + '_Financeiro.txt');
   finally
     Lista.Free;
   end;
 end;
 
-function TCliente.GetEndereco: string;
+function TPessoa.GetEndereco: string;
 begin
   Result := FEndereco;
 end;
 
-function TCliente.Idade: integer;
+function TPessoa.Idade: integer;
 begin
   Result := Trunc((Now - FDataNascimento) / 365.25);
 end;
 
-procedure TCliente.SetDataNascimento(const Value: TDateTime);
+procedure TPessoa.SetDataNascimento(const Value: TDateTime);
 begin
   FDataNascimento := Value;
 end;
 
-procedure TCliente.SetEndereco(const Value: string);
+procedure TPessoa.SetEndereco(const Value: string);
 begin
   FEndereco := Value;
 end;
 
-procedure TCliente.SetNome(const Value: string);
+procedure TPessoa.SetNome(const Value: string);
 begin
   if Value = '' then
     raise Exception.Create('Nome não pode ser nulo!');
@@ -116,7 +118,7 @@ end;
 
 procedure TClasseAmiga.TesteDeSoftware;
 var
-  aClasse: TCliente;
+  aClasse: TPessoa;
 begin
   //
 end;
