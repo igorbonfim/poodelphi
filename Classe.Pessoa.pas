@@ -15,6 +15,10 @@ type
 
 type
   TPessoa = class
+  private // atributos privados, vistos somente dentro da própria classe
+    ttt: string;
+  protected // atributos podem ser enxergados somente pelas classes filha
+    hhh: string;
   strict private
     FDataNascimento: TDateTime;
     FNome: string;
