@@ -32,8 +32,7 @@ type
     Telefone: string;
     Cidade: string;
     Estado: string;
-    Tipo: string;
-    constructor Create(aConexao: IConexao);
+    constructor Create(aConexao: IConexao); virtual;
     procedure CadastrarClientePOO;
     procedure Cadastrar;
     procedure CriarFinanceiro;
@@ -41,6 +40,7 @@ type
     property Nome: string read FNome write SetNome;
     property DataNascimento: TDateTime read FDataNascimento write SetDataNascimento;
     property Endereco: string read GetEndereco write SetEndereco;
+    function Tipo: String; virtual;
   end;
 
 implementation
@@ -116,6 +116,11 @@ begin
     raise Exception.Create('Nome não pode ser nulo!');
 
   FNome := Value;
+end;
+
+function TPessoa.Tipo: String;
+begin
+  Result := 'Pessoa';
 end;
 
 { TClasseAmiga }

@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Memo.Types, FMX.ScrollBox,
   FMX.Memo, Classe.Pessoa, FMX.Edit, Conexao.SQLServer, Conexao.MySQL, Classe.Fornecedor,
-  Classe.Cliente;
+  Classe.Cliente, FMX.ListBox;
 
 type
 
@@ -65,11 +65,14 @@ type
     btnCadClientePOO: TButton;
     edtDataNascimento: TEdit;
     Button3: TButton;
+    ComboBox1: TComboBox;
+    Button4: TButton;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure btnCadClientePOOClick(Sender: TObject);
     procedure btnCadClienteProceduralClick(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
   private
     procedure ExibeMemo(Configuracao: TConfiguracao);
     { Private declarations }
@@ -174,6 +177,23 @@ begin
     Cliente.CriarFinanceiro;
   finally
     Cliente.Free;
+  end;
+end;
+
+procedure TForm1.Button4Click(Sender: TObject);
+var
+  Pessoa: TPessoa;
+begin
+  case ComboBox1.ItemIndex of
+    0: Pessoa := TCliente.Create(nil);
+    1: Pessoa := TFornecedor.Create(nil);
+    2: Pessoa := TPessoa.Create(nil);
+  end;
+
+  try
+    ShowMessage(Pessoa.Tipo);
+  finally
+    Pessoa.Free;
   end;
 end;
 
