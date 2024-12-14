@@ -43,6 +43,10 @@ type
     function Tipo: String; virtual;
   end;
 
+  TMyComp = class(TComponent)
+    constructor Create(AOwner: TComponent); override;
+  end;
+
 implementation
 
 { TCliente }
@@ -130,6 +134,14 @@ var
   aClasse: TPessoa;
 begin
   //
+end;
+
+{ TMyComp }
+
+constructor TMyComp.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+
 end;
 
 end.
