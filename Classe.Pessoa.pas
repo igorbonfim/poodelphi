@@ -32,7 +32,7 @@ type
     Telefone: string;
     Cidade: string;
     Estado: string;
-    constructor Create(aConexao: IConexao); virtual;
+    constructor Create(aConexao: IConexao); virtual;  // virtual permite que o método seja sobreescrito pelas classes filha
     procedure CadastrarClientePOO;
     procedure Cadastrar;
     procedure CriarFinanceiro;
@@ -40,7 +40,7 @@ type
     property Nome: string read FNome write SetNome;
     property DataNascimento: TDateTime read FDataNascimento write SetDataNascimento;
     property Endereco: string read GetEndereco write SetEndereco;
-    function Tipo: String; virtual;
+    function Tipo: String; virtual; abstract;
   end;
 
   TMyComp = class(TComponent)
@@ -120,11 +120,6 @@ begin
     raise Exception.Create('Nome não pode ser nulo!');
 
   FNome := Value;
-end;
-
-function TPessoa.Tipo: String;
-begin
-  Result := 'Pessoa';
 end;
 
 { TClasseAmiga }

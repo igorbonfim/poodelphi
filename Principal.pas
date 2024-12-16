@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Memo.Types, FMX.ScrollBox,
   FMX.Memo, Classe.Pessoa, FMX.Edit, Conexao.SQLServer, Conexao.MySQL, Classe.Fornecedor,
-  Classe.Cliente, FMX.ListBox;
+  Classe.Cliente, FMX.ListBox, Classe.Animal;
 
 type
 
@@ -67,12 +67,15 @@ type
     Button3: TButton;
     ComboBox1: TComboBox;
     Button4: TButton;
+    ComboBox2: TComboBox;
+    Button5: TButton;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure btnCadClientePOOClick(Sender: TObject);
     procedure btnCadClienteProceduralClick(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
   private
     procedure ExibeMemo(Configuracao: TConfiguracao);
     { Private declarations }
@@ -194,6 +197,22 @@ begin
     ShowMessage(Pessoa.Tipo);
   finally
     Pessoa.Free;
+  end;
+end;
+
+procedure TForm1.Button5Click(Sender: TObject);
+var
+  Animal: TAnimal;
+begin
+  case ComboBox2.ItemIndex of
+    0: Animal := TCachorro.Create;
+    1: Animal := TGato.Create;
+  end;
+
+  try
+    ShowMessage(Animal.Voz);
+  finally
+    Animal.Free;
   end;
 end;
 
