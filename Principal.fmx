@@ -1,4 +1,4 @@
-object Form1: TForm1
+object FormPrincipal: TFormPrincipal
   Left = 0
   Top = 0
   Caption = 'POO Clube dos programadores'
@@ -123,5 +123,21 @@ object Form1: TForm1
     Text = 'Voz do animal'
     TextSettings.Trimming = None
     OnClick = Button5Click
+  end
+  object Button6: TButton
+    Position.X = 32.000000000000000000
+    Position.Y = 108.000000000000000000
+    TabOrder = 13
+    Text = 'Heran'#231'a 1'
+    TextSettings.Trimming = None
+    OnClick = Button6Click
+  end
+  object Button7: TButton
+    Position.X = 32.000000000000000000
+    Position.Y = 138.000000000000000000
+    TabOrder = 12
+    Text = 'Heran'#231'a 2'
+    TextSettings.Trimming = None
+    OnClick = Button7Click
   end
 end

@@ -7,7 +7,8 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Memo.Types, FMX.ScrollBox,
   FMX.Memo, Classe.Pessoa, FMX.Edit, Conexao.SQLServer, Conexao.MySQL, Classe.Fornecedor,
-  Classe.Cliente, FMX.ListBox, Classe.Animal;
+  Classe.Cliente, FMX.ListBox, Classe.Animal, Form.Heranca1, Form.Heranca2,
+  Form.Padrao;
 
 type
 
@@ -57,7 +58,7 @@ type
 
   end;
 
-  TForm1 = class(TForm)
+  TFormPrincipal = class(TForm)
     Button1: TButton;
     Button2: TButton;
     Memo1: TMemo;
@@ -69,6 +70,8 @@ type
     Button4: TButton;
     ComboBox2: TComboBox;
     Button5: TButton;
+    Button6: TButton;
+    Button7: TButton;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure btnCadClientePOOClick(Sender: TObject);
@@ -76,6 +79,8 @@ type
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
+    procedure Button7Click(Sender: TObject);
   private
     procedure ExibeMemo(Configuracao: TConfiguracao);
     { Private declarations }
@@ -84,7 +89,7 @@ type
   end;
 
 var
-  Form1: TForm1;
+  FormPrincipal: TFormPrincipal;
 
 implementation
 
@@ -98,7 +103,7 @@ begin
   //
 end;
 
-procedure TForm1.btnCadClientePOOClick(Sender: TObject);
+procedure TFormPrincipal.btnCadClientePOOClick(Sender: TObject);
 var
   Cliente: TPessoa;
 begin
@@ -119,7 +124,7 @@ begin
   end;
 end;
 
-procedure TForm1.btnCadClienteProceduralClick(Sender: TObject);
+procedure TFormPrincipal.btnCadClienteProceduralClick(Sender: TObject);
 var
   Fornecedor: TFornecedor;
 begin
@@ -136,7 +141,7 @@ begin
   end;
 end;
 
-procedure TForm1.Button1Click(Sender: TObject);
+procedure TFormPrincipal.Button1Click(Sender: TObject);
 var
   MinhaGarrafa: TGarrafa;
 begin
@@ -155,7 +160,7 @@ begin
   end;
 end;
 
-procedure TForm1.Button2Click(Sender: TObject);
+procedure TFormPrincipal.Button2Click(Sender: TObject);
 var
   Configuracao: TConfiguracao;
 begin
@@ -166,7 +171,7 @@ begin
   ExibeMemo(Configuracao);
 end;
 
-procedure TForm1.Button3Click(Sender: TObject);
+procedure TFormPrincipal.Button3Click(Sender: TObject);
 var
   Cliente: TCliente;
 begin
@@ -183,7 +188,7 @@ begin
   end;
 end;
 
-procedure TForm1.Button4Click(Sender: TObject);
+procedure TFormPrincipal.Button4Click(Sender: TObject);
 var
   Pessoa: TPessoa;
 begin
@@ -200,7 +205,7 @@ begin
   end;
 end;
 
-procedure TForm1.Button5Click(Sender: TObject);
+procedure TFormPrincipal.Button5Click(Sender: TObject);
 var
   Animal: TAnimal;
 begin
@@ -216,7 +221,17 @@ begin
   end;
 end;
 
-procedure TForm1.ExibeMemo(Configuracao: TConfiguracao);
+procedure TFormPrincipal.Button6Click(Sender: TObject);
+begin
+  FormHeranca1.ShowModal;
+end;
+
+procedure TFormPrincipal.Button7Click(Sender: TObject);
+begin
+  FormHeranca2.ShowModal;
+end;
+
+procedure TFormPrincipal.ExibeMemo(Configuracao: TConfiguracao);
 begin
   Memo1.Lines.Add(Configuracao.Host);
   Memo1.Lines.Add(Configuracao.Path);

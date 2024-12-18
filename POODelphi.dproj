@@ -189,7 +189,7 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="Principal.pas">
-            <Form>Form1</Form>
+            <Form>FormPrincipal</Form>
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="Classe.Pessoa.pas"/>
@@ -198,6 +198,19 @@
         <DCCReference Include="Conexao.MySQL.pas"/>
         <DCCReference Include="Classe.Fornecedor.pas"/>
         <DCCReference Include="Classe.Cliente.pas"/>
+        <DCCReference Include="Classe.Animal.pas"/>
+        <DCCReference Include="Form.Padrao.pas">
+            <Form>FormPadrao</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="Form.Heranca1.pas">
+            <Form>FormHeranca1</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="Form.Heranca2.pas">
+            <Form>FormHeranca2</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
