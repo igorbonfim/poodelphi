@@ -1,5 +1,0 @@
-Nome: Igor
-Telefone: 1111111
-Endereco: Rua testando procedural, 85
-Cidade: Fortaleza
-Estado: Ceará

@@ -130,12 +130,14 @@ var
 begin
   Fornecedor := TFornecedor.Create(TConexaoMySQL.Create);
   try
-    Fornecedor.Nome := 'Teste 1';
+    Fornecedor.Nome := 'Fornecedor';
     Fornecedor.Cidade := 'Fortaleza';
     Fornecedor.Estado := 'Ceará';
     Fornecedor.RazaoSocial := 'Teste LTDA';
     Fornecedor.Cadastrar;
-    Fornecedor.CriarFinanceiro;
+    Fornecedor.CriarFinanceiro(6000);
+
+    ShowMessage('Fornecedor criado!');
   finally
     Fornecedor.Free;
   end;
@@ -177,12 +179,13 @@ var
 begin
   Cliente := TCliente.Create(TConexaoMySQL.Create);
   try
-    Cliente.Nome := 'Teste 1';
+    Cliente.Nome := 'Cliente';
     Cliente.Cidade := 'Fortaleza';
     Cliente.Estado := 'Ceará';
     Cliente.Saldo := 2000;
     Cliente.Cadastrar;
     Cliente.CriarFinanceiro;
+    ShowMessage('Cliente criado!');
   finally
     Cliente.Free;
   end;

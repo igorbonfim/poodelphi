@@ -17,12 +17,14 @@ type
   TPessoa = class
   private // atributos privados, vistos somente dentro da própria classe
     ttt: string;
+    procedure SetSaldo(const Value: Currency);
   protected // atributos podem ser enxergados somente pelas classes filha
     hhh: string;
   strict private
     FDataNascimento: TDateTime;
     FNome: string;
     FEndereco: string;
+    FSaldo: Currency;
     Conexao: IConexao;
     procedure SetDataNascimento(const Value: TDateTime);
     procedure SetNome(const Value: string);
@@ -35,9 +37,11 @@ type
     constructor Create(aConexao: IConexao); virtual;  // virtual permite que o método seja sobreescrito pelas classes filha
     procedure CadastrarClientePOO;
     procedure Cadastrar;
-    procedure CriarFinanceiro;
+    procedure CriarFinanceiro; overload;
+    procedure CriarFinanceiro(Value: Currency); overload;
     function Idade: integer;
     property Nome: string read FNome write SetNome;
+    property Saldo: Currency read FSaldo write SetSaldo;
     property DataNascimento: TDateTime read FDataNascimento write SetDataNascimento;
     property Endereco: string read GetEndereco write SetEndereco;
     function Tipo: String; virtual; abstract;
@@ -52,8 +56,17 @@ implementation
 { TCliente }
 
 procedure TPessoa.Cadastrar;
+var
+  Lista: TStringList;
 begin
-  //Cadastrar
+  {Lista := TStringList.Create;
+  try
+    Lista.Add('Nome: ' +Nome);
+    Lista.Add('Saldo: ' +CurrToStr(Saldo));
+    Lista.SaveToFile(Nome + '_Fornecedor.txt');
+  finally
+    Lista.Free;
+  end;}
 end;
 
 procedure TPessoa.CadastrarClientePOO;
@@ -81,6 +94,20 @@ begin
   Estado := 'Ceará';
 end;
 
+procedure TPessoa.CriarFinanceiro(Value: Currency);
+var
+  Lista: TStringList;
+begin
+  Lista := TStringList.Create;
+  try
+    Lista.Add('Nome: ' +Nome);
+    Lista.Add('Saldo: ' +CurrToStr(Value));
+    Lista.SaveToFile(Nome + '_Financeiro.txt');
+  finally
+    Lista.Free;
+  end;
+end;
+
 procedure TPessoa.CriarFinanceiro;
 var
   Lista: TStringList;
@@ -88,6 +115,7 @@ begin
   Lista := TStringList.Create;
   try
     Lista.Add('Nome: ' +Nome);
+    Lista.Add('Saldo: 1000');
     Lista.SaveToFile(Nome + '_Financeiro.txt');
   finally
     Lista.Free;
@@ -120,6 +148,11 @@ begin
     raise Exception.Create('Nome não pode ser nulo!');
 
   FNome := Value;
+end;
+
+procedure TPessoa.SetSaldo(const Value: Currency);
+begin
+  FSaldo := Value;
 end;
 
 { TClasseAmiga }

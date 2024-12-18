@@ -1,2 +1,0 @@
-Nome: Igor
-Saldo: 1000

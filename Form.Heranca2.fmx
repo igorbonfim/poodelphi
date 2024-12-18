@@ -1,5 +1,6 @@
 inherited FormHeranca2: TFormHeranca2
   Caption = 'FormPadrao1'
+  Position = DesktopCenter
   DesignerMasterStyle = 0
   inherited Panel1: TPanel
     inherited Label1: TLabel
