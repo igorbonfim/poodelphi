@@ -62,28 +62,27 @@ type
     Button1: TButton;
     Button2: TButton;
     Memo1: TMemo;
-    btnCadClienteProcedural: TButton;
-    btnCadClientePOO: TButton;
-    edtDataNascimento: TEdit;
-    Button3: TButton;
+    btnCadFornecedor: TButton;
+    btnCadCliente: TButton;
     ComboBox1: TComboBox;
     Button4: TButton;
     ComboBox2: TComboBox;
     Button5: TButton;
     Button6: TButton;
     Button7: TButton;
+    Memo2: TMemo;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
-    procedure btnCadClientePOOClick(Sender: TObject);
-    procedure btnCadClienteProceduralClick(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
+    procedure btnCadFornecedorClick(Sender: TObject);
+    procedure btnCadClienteClick(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
   private
-    procedure ExibeMemo(Configuracao: TConfiguracao);
     { Private declarations }
+    procedure ExibeMemo(Configuracao: TConfiguracao);
+    procedure ExibeMensagemMemo(Value: String);
   public
     { Public declarations }
   end;
@@ -103,36 +102,16 @@ begin
   //
 end;
 
-procedure TFormPrincipal.btnCadClientePOOClick(Sender: TObject);
-var
-  Cliente: TPessoa;
-begin
-  try
-    Cliente := TPessoa.Create(TConexaoSQLServer.Create);
-    Cliente.Nome := 'Igor';
-    Cliente.Telefone := '32231185';
-    Cliente.Endereco := 'Rua testando POO e Financeiro, 85';
-    Cliente.Cidade := 'Capital';
-    Cliente.Estado := 'Ceará';
-    Cliente.DataNascimento := StrToDateTime(edtDataNascimento.Text);
-    Cliente.CadastrarClientePOO;
-    Cliente.CriarFinanceiro;
-
-    ShowMessage('Idade: ' +IntToStr(Cliente.Idade));
-  finally
-    Cliente.Free;
-  end;
-end;
-
-procedure TFormPrincipal.btnCadClienteProceduralClick(Sender: TObject);
+procedure TFormPrincipal.btnCadFornecedorClick(Sender: TObject);
 var
   Fornecedor: TFornecedor;
 begin
   Fornecedor := TFornecedor.Create(TConexaoMySQL.Create);
   try
+    Fornecedor.EventMsg := ExibeMensagemMemo;
     Fornecedor.Nome := 'Fornecedor';
     Fornecedor.Cidade := 'Fortaleza';
-    Fornecedor.Estado := 'Ceará';
+    Fornecedor.UF := 'Ceará';
     Fornecedor.RazaoSocial := 'Teste LTDA';
     Fornecedor.Cadastrar;
     Fornecedor.CriarFinanceiro(6000);
@@ -173,18 +152,20 @@ begin
   ExibeMemo(Configuracao);
 end;
 
-procedure TFormPrincipal.Button3Click(Sender: TObject);
+procedure TFormPrincipal.btnCadClienteClick(Sender: TObject);
 var
   Cliente: TCliente;
 begin
   Cliente := TCliente.Create(TConexaoMySQL.Create);
   try
+    Cliente.EventMsg := ExibeMensagemMemo;
     Cliente.Nome := 'Cliente';
     Cliente.Cidade := 'Fortaleza';
-    Cliente.Estado := 'Ceará';
+    Cliente.UF := 'Ceará';
     Cliente.Saldo := 2000;
     Cliente.Cadastrar;
     Cliente.CriarFinanceiro;
+
     ShowMessage('Cliente criado!');
   finally
     Cliente.Free;
@@ -240,6 +221,11 @@ begin
   Memo1.Lines.Add(Configuracao.Path);
   Memo1.Lines.Add(Configuracao.Usuario);
   Memo1.Lines.Add(Configuracao.Senha);
+end;
+
+procedure TFormPrincipal.ExibeMensagemMemo(Value: String);
+begin
+  Memo2.Lines.Add(Value);
 end;
 
 constructor TGarrafa.Create;
