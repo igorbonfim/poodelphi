@@ -83,6 +83,7 @@ type
     { Private declarations }
     procedure ExibeMemo(Configuracao: TConfiguracao);
     procedure ExibeMensagemMemo(Value: String);
+    procedure OnCadastro(Sender: TObject);
   public
     { Public declarations }
   end;
@@ -108,7 +109,7 @@ var
 begin
   Fornecedor := TFornecedor.Create(TConexaoMySQL.Create);
   try
-    Fornecedor.EventMsg := ExibeMensagemMemo;
+    Fornecedor.OnCadastro := OnCadastro;
     Fornecedor.Nome := 'Fornecedor';
     Fornecedor.Cidade := 'Fortaleza';
     Fornecedor.UF := 'Ceará';
@@ -158,7 +159,7 @@ var
 begin
   Cliente := TCliente.Create(TConexaoMySQL.Create);
   try
-    Cliente.EventMsg := ExibeMensagemMemo;
+    Cliente.OnCadastro := OnCadastro;
     Cliente.Nome := 'Cliente';
     Cliente.Cidade := 'Fortaleza';
     Cliente.UF := 'Ceará';
@@ -226,6 +227,11 @@ end;
 procedure TFormPrincipal.ExibeMensagemMemo(Value: String);
 begin
   Memo2.Lines.Add(Value);
+end;
+
+procedure TFormPrincipal.OnCadastro(Sender: TObject);
+begin
+  Memo2.Lines.Add('Foi cadastrado ' +TPessoa(Sender).Nome);
 end;
 
 constructor TGarrafa.Create;

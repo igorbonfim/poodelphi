@@ -16,6 +16,7 @@ type
 type
 
   TEventMemo = procedure (Value: string) of object;
+  TNotifyEvent = procedure(Sender: TObject) of object;
 
   TPessoa = class
   private // atributos privados, vistos somente dentro da própria classe; protected - atributos podem ser enxergados somente pelas classes filha
@@ -28,6 +29,7 @@ type
     FSaldo: Currency;
     FDataNascimento: TDate;
     FEventMemo: TEventMemo;
+    FOnClick: TNotifyEvent;
     function GetEndereco: string;
     procedure SetCidade(const Value: string);
     procedure SetEndereco(const Value: string);
@@ -36,11 +38,13 @@ type
     procedure SetTelefone(const Value: string);
     procedure SetUF(const Value: String);
     procedure SetEventMemo(const Value: TEventMemo);
+    procedure SetOnClick(const Value: TNotifyEvent);
   public
     constructor Create(aConexao: IConexao); virtual;  // virtual permite que o método seja sobreescrito pelas classes filha
     procedure Cadastrar;
     procedure CriarFinanceiro; overload;
     procedure CriarFinanceiro(Value: Currency); overload;
+    procedure EvOnCadastro;
     function Idade: integer;
     function Tipo: String; virtual; abstract;
     property Nome: String read FNome write SetNome;
@@ -50,6 +54,7 @@ type
     property UF: String read FUF write SetUF;
     property Saldo: Currency read FSaldo write SetSaldo;
     property EventMsg: TEventMemo read FEventMemo write SetEventMemo;
+    property OnCadastro: TNotifyEvent read FOnClick write SetOnClick;
   end;
 
   TMyComp = class(TComponent)
@@ -73,7 +78,7 @@ begin
     Lista.Add('Estado: ' +UF);
     Lista.SaveToFile(Nome + '_Cadastro.txt');
     Conexao.Gravar;
-    EventMsg(Nome + ' cadastrado com sucesso!');
+    EvOnCadastro;
   finally
     Lista.Free;
   end;
@@ -95,10 +100,16 @@ begin
     Lista.Add('Saldo: ' +CurrToStr(Value));
     Lista.SaveToFile(Nome + '_Financeiro.txt');
 
-    EventMsg(Nome + ' cadastrado o financeiro com sucesso!');
+    EvOnCadastro;
   finally
     Lista.Free;
   end;
+end;
+
+procedure TPessoa.EvOnCadastro;
+begin
+  if Assigned(OnCadastro) then
+    OnCadastro(Self);
 end;
 
 procedure TPessoa.CriarFinanceiro;
@@ -111,7 +122,7 @@ begin
     Lista.Add('Saldo: 1000');
     Lista.SaveToFile(Nome + '_Financeiro.txt');
 
-    EventMsg(Nome + ' cadastrado o financeiro com sucesso!');
+    EvOnCadastro;
   finally
     Lista.Free;
   end;
@@ -148,6 +159,11 @@ begin
     raise Exception.Create('Nome não pode ser nulo!');
 
   FNome := Value;
+end;
+
+procedure TPessoa.SetOnClick(const Value: TNotifyEvent);
+begin
+  FOnClick := Value;
 end;
 
 procedure TPessoa.SetSaldo(const Value: Currency);

@@ -2,10 +2,9 @@ inherited FormHeranca1: TFormHeranca1
   Caption = 'FormPadrao1'
   Position = DesktopCenter
   DesignerMasterStyle = 0
-  inherited Panel1: TPanel
+  inherited Layout1: TLayout
     inherited Label1: TLabel
       TextSettings.Font.StyleExt = {00070000000000000004000000}
-      Text = 'Form Heran'#231'a 1'
     end
   end
 end
